@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <main class="container mt-5">
+      <h1>Search for User!</h1>
+
+      <div class="d-flex flex-row gap-3 my-2">
+        <form th:action="@{/logout}" method="post">
+          <input type="submit" value="Sign Out" class="btn btn-outline-dark" />
+        </form>
+        <a th:href="@{/about}" class="btn btn-outline-primary">About</a>
+        <a th:href="@{/}" class="btn btn-outline-secondary">Home</a>
+      </div>
+
+      <form th:action="@{/search}" method="GET" class="mt-3 d-flex flex-row">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search"
+          th:value="${q}"
+          class="form-control form-control-dark"
+        />
+        <button type="submit" class="btn btn-outline-info ms-2">Search</button>
+      </form>
+
+      <!-- render results 
+        results in an array of users and display them in a table
+
+    -->
+
+      <p class="mt-2">Found <span th:text="${results.size}"></span> results.</p>
+
+      <div th:each="result : ${results}">
+        <table class="table table-striped my-4">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Username</td>
+              <td th:text="${result.username}"></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td th:text="${result.name}"></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td th:text="${result.email}"></td>
+            </tr>
+            <tr>
+              <td>Created At</td>
+              <td th:text="${result.createdAt}"></td>
+            </tr>
+            <tr>
+              <td>Updated At</td>
+              <td th:text="${result.updatedAt}"></td>
+            </tr>
+            <tr>
+              <td>Enabled</td>
+              <td th:text="${result.enabled}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

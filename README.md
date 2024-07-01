@@ -1,0 +1,5 @@
+- Login/logout with Spring Security
+- Registering a new user
+- Password hashing
+- Displaying user information
+- Searching for users
